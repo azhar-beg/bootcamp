@@ -3,7 +3,7 @@ package com.tw.step.assignment2;
 import com.tw.step.assignment2.exception.InvalidProbabilityException;
 
 public class Chance {
-    private static double probability;
+    protected final double probability;
 
     private Chance(double probability) {
         this.probability = probability;
@@ -16,11 +16,7 @@ public class Chance {
         return new Chance(probability);
     }
 
-    public static Chance compliment(double probability) throws InvalidProbabilityException {
+    public static Chance complement(double probability) throws InvalidProbabilityException {
         return createChance(1 - probability);
-    }
-
-    public double probability() {
-        return probability;
     }
 }

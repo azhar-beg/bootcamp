@@ -1,5 +1,7 @@
 package com.tw.step.assignment2;
 
+import com.tw.step.assignment2.exception.InvalidProbabilityException;
+
 public class Chance {
     private static double probability;
 
@@ -7,7 +9,10 @@ public class Chance {
         this.probability = probability;
     }
 
-    public static Chance createChance(double probability) {
+    public static Chance createChance(double probability) throws InvalidProbabilityException {
+        if (probability < 0 || probability > 1) {
+            throw new InvalidProbabilityException(probability);
+        }
         return new Chance(probability);
     }
 

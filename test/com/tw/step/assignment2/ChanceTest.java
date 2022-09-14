@@ -9,9 +9,18 @@ class ChanceTest {
 
     @Test
     void shouldCreateChanceOfGivenProbability() throws InvalidProbabilityException {
-        Chance chance = Chance.createChance(0.5);
+        Chance chance1 = Chance.createChance(0.5);
+        Chance chance2 = Chance.createChance(0.5);
 
-        assertEquals(0.5, chance.probability);
+        assertTrue(chance1.equals(chance2));
+    }
+
+    @Test
+    void shouldCreateAChanceForCompliment() throws InvalidProbabilityException {
+        Chance complimentChance = Chance.complement(0.1);
+        Chance chance = Chance.createChance(0.9);
+
+        assertTrue(complimentChance.equals(chance));
     }
 
     @Test
@@ -25,14 +34,7 @@ class ChanceTest {
     }
 
     @Test
-    void shouldCreateAChanceForCompliment() throws InvalidProbabilityException {
-        Chance compliment = Chance.complement(0.1);
-
-        assertEquals(0.9, compliment.probability);
-    }
-
-    @Test
-    void shouldThrowErrorForInvalidCompliment() throws InvalidProbabilityException {
+    void shouldThrowErrorForInvalidCompliment() {
         assertThrows(InvalidProbabilityException.class, () -> Chance.complement(-1));
     }
 }

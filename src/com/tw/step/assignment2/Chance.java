@@ -16,11 +16,11 @@ public class Chance {
         return new Chance(probability);
     }
 
-    public double getting() {
-        return probability;
+    public static Chance compliment(double probability) throws InvalidProbabilityException {
+        return createChance(1 - probability);
     }
 
-    public double notGetting() {
-        return 1 - probability;
+    public double probability() {
+        return probability;
     }
 }

@@ -11,22 +11,28 @@ class ChanceTest {
     @Test
     void getting() throws InvalidProbabilityException {
         Chance chance = Chance.createChance(0.5);
-        assertEquals(0.5, chance.getting());
+        assertEquals(0.5, chance.probability());
     }
 
     @Test
-    void notGetting() throws InvalidProbabilityException {
-        Chance chance = Chance.createChance(0.4);
-        assertEquals(0.6, chance.notGetting());
+    void shouldThrowErrorForNegativeProbability()  {
+        assertThrows(InvalidProbabilityException.class, () -> Chance.createChance(-2));
     }
 
     @Test
-    void shouldThrowErrorForInvalidProbability()  {
-        assertThrows(InvalidProbabilityException.class, new Executable() {
-            @Override
-            public void execute() throws Throwable {
-                Chance.createChance(2);
-            }
-        });
+    void shouldThrowErrorForProbabilityGreaterThanOne()  {
+        assertThrows(InvalidProbabilityException.class, () -> Chance.createChance(2));
+    }
+
+    @Test
+    void shouldCreateAChanceForCompliment() throws InvalidProbabilityException {
+        Chance compliment = Chance.compliment(0.1);
+
+        assertEquals(0.9, compliment.probability());
+    }
+
+    @Test
+    void shouldThrowErrorForInvalidCompliment() throws InvalidProbabilityException {
+        assertThrows(InvalidProbabilityException.class, () -> Chance.compliment(-1));
     }
 }

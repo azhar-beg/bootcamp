@@ -5,7 +5,7 @@ import com.tw.step.assignment2.exception.InvalidProbabilityException;
 import java.util.Objects;
 
 public class Chance {
-    protected final double probability;
+    private final double probability;
 
     private Chance(double probability) {
         this.probability = probability;
@@ -18,8 +18,15 @@ public class Chance {
         return new Chance(probability);
     }
 
-    public static Chance complement(double probability) throws InvalidProbabilityException {
-        return createChance(1 - probability);
+    public Chance complement() throws InvalidProbabilityException {
+        return createChance(1.0 - this.probability);
+    }
+
+    public boolean approxEquals(Chance anotherChance) {
+        if (this == anotherChance) return true;
+
+        double delta = this.probability - anotherChance.probability;
+        return delta < 0.001 || delta > -0.001;
     }
 
     @Override

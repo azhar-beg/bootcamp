@@ -16,11 +16,12 @@ class ChanceTest {
     }
 
     @Test
-    void shouldCreateAChanceForCompliment() throws InvalidProbabilityException {
-        Chance complimentChance = Chance.complement(0.1);
-        Chance chance = Chance.createChance(0.9);
+    void shouldCreateAChanceForComplement() throws InvalidProbabilityException {
+        Chance chance1 = Chance.createChance(0.9);
+        Chance complementChance = chance1.complement();
+        Chance chance2 = Chance.createChance(0.1);
 
-        assertTrue(complimentChance.equals(chance));
+        assertTrue(complementChance.approxEquals(chance2));
     }
 
     @Test
@@ -31,10 +32,5 @@ class ChanceTest {
     @Test
     void shouldThrowErrorForProbabilityGreaterThanOne()  {
         assertThrows(InvalidProbabilityException.class, () -> Chance.createChance(2));
-    }
-
-    @Test
-    void shouldThrowErrorForInvalidCompliment() {
-        assertThrows(InvalidProbabilityException.class, () -> Chance.complement(-1));
     }
 }

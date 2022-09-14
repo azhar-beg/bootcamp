@@ -22,11 +22,13 @@ public class Chance {
         return createChance(1.0 - this.probability);
     }
 
-    public boolean approxEquals(Chance anotherChance) {
-        if (this == anotherChance) return true;
+    public Chance intersection(Chance anotherChance) throws InvalidProbabilityException {
+        return createChance(this.probability * anotherChance.probability);
+    }
 
+    public boolean approxEquals(Chance anotherChance) {
         double delta = this.probability - anotherChance.probability;
-        return delta < 0.001 || delta > -0.001;
+        return Math.abs(delta) <= 0.001;
     }
 
     @Override

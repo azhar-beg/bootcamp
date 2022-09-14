@@ -25,6 +25,16 @@ class ChanceTest {
     }
 
     @Test
+    void shouldCreateAChanceForIntersection() throws InvalidProbabilityException {
+        Chance chance1 = Chance.createChance(0.3);
+        Chance chance2 = Chance.createChance(0.3);
+        Chance actual = chance2.intersection(chance1);
+        Chance expected = Chance.createChance(0.09);
+
+        assertTrue(actual.approxEquals(expected));
+    }
+
+    @Test
     void shouldThrowErrorForNegativeProbability()  {
         assertThrows(InvalidProbabilityException.class, () -> Chance.createChance(-2));
     }

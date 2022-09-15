@@ -23,10 +23,26 @@ class LengthTest {
     }
 
     @Test
-    void shouldReturnNegativeWhenFeetIsSmallerThanInches() {
+    void shouldReturnNegativeWhenFeetIsLessThanInches() {
         Length feet = new Length(1, Unit.FEET);
         Length inches = new Length(13, Unit.INCH);
 
         assertEquals(-1, feet.compare(inches));
+    }
+
+    @Test
+    void shouldReturn1WhenInchesIsGreaterThanCentimeters() {
+        Length inch = new Length(1, Unit.INCH);
+        Length cm = new Length(1, Unit.CM);
+
+        assertEquals(1, inch.compare(cm));
+    }
+
+    @Test
+    void shouldReturn1WhenCMIsGreaterThanMM() {
+        Length cm = new Length(1, Unit.CM);
+        Length mm = new Length(5, Unit.MM);
+
+        assertEquals(1, cm.compare(mm));
     }
 }

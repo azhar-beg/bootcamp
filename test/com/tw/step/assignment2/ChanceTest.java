@@ -35,6 +35,16 @@ class ChanceTest {
     }
 
     @Test
+    void shouldCreateAChanceForUnion() throws InvalidProbabilityException {
+        Chance chance1 = Chance.createChance(0.5);
+        Chance chance2 = Chance.createChance(0.5);
+        Chance actual = chance2.union(chance1);
+        Chance expected = Chance.createChance(0.75);
+
+        assertTrue(actual.approxEquals(expected));
+    }
+
+    @Test
     void shouldThrowErrorForNegativeProbability()  {
         assertThrows(InvalidProbabilityException.class, () -> Chance.createChance(-2));
     }

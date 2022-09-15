@@ -48,12 +48,22 @@ class LengthTest {
     }
 
     @Test
-
     void shouldAddTwoInches() throws NegativeLengthException {
         Length inch1 = Length.create(1, LengthUnit.INCH);
         Length inch2 = Length.create(2, LengthUnit.INCH);
 
         Length actual = inch1.add(inch2);
+        Length expected = Length.create(3, LengthUnit.INCH);
+
+        assertTrue(actual.isValueWithinDelta(expected, 0.01));
+    }
+
+    @Test
+    void shouldAddInchAndCM() throws NegativeLengthException {
+        Length cm = Length.create(2.5, LengthUnit.CM);
+        Length inch = Length.create(2, LengthUnit.INCH);
+
+        Length actual = cm.add(inch);
         Length expected = Length.create(3, LengthUnit.INCH);
 
         assertTrue(actual.isValueWithinDelta(expected, 0.01));

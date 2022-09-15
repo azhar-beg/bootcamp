@@ -10,7 +10,7 @@ public class Length {
     }
 
     public int compare(Length anotherLength) {
-        double diff = (this.value * this.unit.getCmValue()) - (anotherLength.value * anotherLength.unit.getCmValue());
+        double diff = (this.unit.toCM(this.value) - anotherLength.unit.toCM(anotherLength.value));
 
         return Double.compare(diff, 0);
     }

@@ -1,7 +1,7 @@
 package com.tw.step.assignment3;
 
 public enum Unit {
-    FEET(30.48), INCHES(2.54), CM(1), MM(0.1);
+    FEET(30), INCH(2.5), CM(1), MM(0.1);
 
     private final double cmValue;
 
@@ -9,7 +9,7 @@ public enum Unit {
         this.cmValue = cmValue;
     }
 
-    public double getCmValue() {
-        return cmValue;
+    public double toCM(double value) {
+        return this.cmValue * value;
     }
 }

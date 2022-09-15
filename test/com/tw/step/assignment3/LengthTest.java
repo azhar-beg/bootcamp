@@ -9,7 +9,7 @@ class LengthTest {
     @Test
     void shouldReturn1WhenFeetIsGreaterThanInches() {
         Length feet = new Length(1, Unit.FEET);
-        Length inches = new Length(1, Unit.INCHES);
+        Length inches = new Length(1, Unit.INCH);
 
         assertEquals(1, feet.compare(inches));
     }
@@ -17,7 +17,7 @@ class LengthTest {
     @Test
     void shouldReturn0WhenBothLengthsAreEqual() {
         Length feet = new Length(1, Unit.FEET);
-        Length inches = new Length(12, Unit.INCHES);
+        Length inches = new Length(12, Unit.INCH);
 
         assertEquals(0, feet.compare(inches));
     }
@@ -25,7 +25,7 @@ class LengthTest {
     @Test
     void shouldReturnNegativeWhenFeetIsSmallerThanInches() {
         Length feet = new Length(1, Unit.FEET);
-        Length inches = new Length(13, Unit.INCHES);
+        Length inches = new Length(13, Unit.INCH);
 
         assertEquals(-1, feet.compare(inches));
     }

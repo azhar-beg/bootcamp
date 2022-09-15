@@ -19,8 +19,12 @@ public class Length {
     }
 
     public int compare(Length anotherLength) {
-        double diff = (this.unit.toCM(this.value) - anotherLength.unit.toCM(anotherLength.value));
+        double cmDiff = this.getCmValue() - anotherLength.getCmValue();
 
-        return Double.compare(diff, 0);
+        return Double.compare(cmDiff, 0);
+    }
+
+    private double getCmValue() {
+        return this.unit.toCM(this.value);
     }
 }

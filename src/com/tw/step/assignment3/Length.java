@@ -4,14 +4,14 @@ import com.tw.step.assignment3.exception.NegativeLengthException;
 
 public class Length {
     private final double value;
-    private final Unit unit;
+    private final LengthUnit unit;
 
-    private Length(double value, Unit unit) {
+    private Length(double value, LengthUnit unit) {
         this.value = value;
         this.unit = unit;
     }
 
-    public static Length create(double value, Unit unit) throws NegativeLengthException {
+    public static Length create(double value, LengthUnit unit) throws NegativeLengthException {
         if (value < 0 ) {
             throw new NegativeLengthException(value);
         }
@@ -24,7 +24,16 @@ public class Length {
         return Double.compare(cmDiff, 0);
     }
 
+    public Length add(Length anotherLength) throws NegativeLengthException {
+        double value = this.unit.toInch(this.value) + anotherLength.unit.toInch(anotherLength.value);
+        return create(value, LengthUnit.INCH);
+    }
+
     private double getCmValue() {
         return this.unit.toCM(this.value);
     }
+
+    public boolean isValueWithinDelta(Length anotherLength, double delta) {
+        return  Math.abs(this.value - anotherLength.value) <= delta;
+    };
 }

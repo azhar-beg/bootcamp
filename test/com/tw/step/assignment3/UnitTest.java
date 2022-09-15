@@ -8,11 +8,11 @@ class UnitTest {
 
     @Test
     void shouldConvertFeetToCm() {
-        assertEquals(30, Unit.FEET.toCM(1));
+        assertEquals(30, LengthUnit.FEET.toCM(1));
     }
 
     @Test
     void shouldConvertInchToCm() {
-        assertEquals(5, Unit.INCH.toCM(2));
+        assertEquals(5, LengthUnit.INCH.toCM(2));
     }
 }

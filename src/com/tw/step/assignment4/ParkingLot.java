@@ -1,14 +1,15 @@
 package com.tw.step.assignment4;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ParkingLot {
-    private final ArrayList<Car> cars;
+    private final Set<Car> cars;
     private final int maxNoOfSlots;
 
     public ParkingLot(int maxNoOfSlots) {
         this.maxNoOfSlots = maxNoOfSlots;
-        this.cars = new ArrayList<>();
+        this.cars = new HashSet<>();
     }
 
     boolean park(Car car){

@@ -66,9 +66,37 @@ class ParkingLotTest {
         parkingLot.addListener((capacity)->{
             actual.set(capacity);
         });
-
         parkingLot.park(new Car("456"));
         ParkingLotCapacity expected = ParkingLotCapacity.OVER_80;
+
+        assertEquals(actual.get(),expected);
+    }
+
+    @Test
+    void shouldReceiveCapacityWhenItIsLessThanTwenty() throws InvalidParkingSlotsException {
+        ParkingLot parkingLot = ParkingLot.create(5);
+        AtomicReference<ParkingLotCapacity> actual = new AtomicReference<>();
+
+        parkingLot.addListener((capacity)->{
+            actual.set(capacity);
+        });
+        parkingLot.park(new Car("456"));
+        ParkingLotCapacity expected = ParkingLotCapacity.LESS_THAN_20;
+
+        assertEquals(actual.get(),expected);
+    }
+
+    @Test
+    void shouldReceiveCapacityWhenTheLotIsFull() throws InvalidParkingSlotsException {
+        ParkingLot parkingLot = ParkingLot.create(1);
+        parkingLot.park(new Car("456"));
+        AtomicReference<ParkingLotCapacity> actual = new AtomicReference<>();
+
+        parkingLot.addListener((capacity)->{
+            actual.set(capacity);
+        });
+        parkingLot.park(new Car("456"));
+        ParkingLotCapacity expected = ParkingLotCapacity.FULL;
 
         assertEquals(actual.get(),expected);
     }

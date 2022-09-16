@@ -8,6 +8,7 @@ public class ParkingLot {
     private final ArrayList<Car> cars;
     private final int maxNoOfSlots;
     private final Notifier notifier;
+    private final static  int MIN_SLOTS = 0;
 
     private ParkingLot(int maxNoOfSlots) {
         this.maxNoOfSlots = maxNoOfSlots;
@@ -20,26 +21,36 @@ public class ParkingLot {
     }
 
     public static ParkingLot create(int maxNoOfSlots) throws InvalidParkingSlotsException {
-        if (maxNoOfSlots <=0){
+        if (maxNoOfSlots <= MIN_SLOTS){
             throw new InvalidParkingSlotsException(maxNoOfSlots);
         }
+
         return new ParkingLot(maxNoOfSlots);
     }
 
     boolean park(Car car){
         if (this.isFull()){
+            this.notifier.sendNotifications(ParkingLotCapacity.FULL);
             return false;
         }
 
         boolean isCarParked = cars.add(car);
-        int capacity = calculateCapacity();
-        this.notifier.sendNotifications(capacity);
 
+        sendNotifications();
         return isCarParked;
     }
 
-    private int calculateCapacity() {
-        return Math.round((this.cars.size() / this.maxNoOfSlots) * 100);
+    private void sendNotifications() {
+        double capacity = Math.round((this.cars.size() * 100.0) / this.maxNoOfSlots);
+
+        if (capacity >= 80){
+            this.notifier.sendNotifications(ParkingLotCapacity.OVER_80);
+            return;
+        }
+
+        if (capacity <= 20){
+            this.notifier.sendNotifications(ParkingLotCapacity.LESS_THAN_20);
+        }
     }
 
     public boolean isFull() {

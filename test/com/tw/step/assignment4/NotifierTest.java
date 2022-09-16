@@ -26,7 +26,7 @@ class NotifierTest {
             count.getAndIncrement();
         });
 
-        notifier.sendNotifications(1);
+        notifier.sendNotifications(ParkingLotCapacity.OVER_80);
 
         assertEquals(1, count.get());
     }

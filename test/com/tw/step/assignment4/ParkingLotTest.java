@@ -3,6 +3,8 @@ package com.tw.step.assignment4;
 import com.tw.step.assignment4.exception.InvalidParkingSlotsException;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotTest {
@@ -51,5 +53,23 @@ class ParkingLotTest {
         assertThrows(InvalidParkingSlotsException.class, ()-> {
             ParkingLot.create(-2);
         });
+    }
+
+    @Test
+    void shouldReceiveCapacityWhenItIsOverEighty() throws InvalidParkingSlotsException {
+        ParkingLot parkingLot = ParkingLot.create(5);
+        parkingLot.park(new Car("123"));
+        parkingLot.park(new Car("456"));
+        parkingLot.park(new Car("789"));
+        AtomicReference<ParkingLotCapacity> actual = new AtomicReference<>();
+
+        parkingLot.addListener((capacity)->{
+            actual.set(capacity);
+        });
+
+        parkingLot.park(new Car("456"));
+        ParkingLotCapacity expected = ParkingLotCapacity.OVER_80;
+
+        assertEquals(actual.get(),expected);
     }
 }

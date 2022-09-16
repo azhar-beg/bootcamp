@@ -7,10 +7,16 @@ import java.util.ArrayList;
 public class ParkingLot {
     private final ArrayList<Car> cars;
     private final int maxNoOfSlots;
+    private final Notifier notifier;
 
     private ParkingLot(int maxNoOfSlots) {
         this.maxNoOfSlots = maxNoOfSlots;
         this.cars = new ArrayList<>();
+        this.notifier = new Notifier();
+    }
+
+    boolean addListener(Notifiable notifiable){
+        return this.notifier.addListener(notifiable);
     }
 
     public static ParkingLot create(int maxNoOfSlots) throws InvalidParkingSlotsException {
@@ -25,7 +31,15 @@ public class ParkingLot {
             return false;
         }
 
-        return cars.add(car);
+        boolean isCarParked = cars.add(car);
+        int capacity = calculateCapacity();
+        this.notifier.sendNotifications(capacity);
+
+        return isCarParked;
+    }
+
+    private int calculateCapacity() {
+        return Math.round((this.cars.size() / this.maxNoOfSlots) * 100);
     }
 
     public boolean isFull() {

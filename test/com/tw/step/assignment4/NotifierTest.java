@@ -12,7 +12,7 @@ class NotifierTest {
     void shouldAddListenerToBeNotified() {
         Notifier notifier = new Notifier();
 
-        boolean actual = notifier.addListener(() -> {});
+        boolean actual = notifier.addListener((capacity) -> {});
 
         assertTrue(actual);
     }
@@ -22,10 +22,11 @@ class NotifierTest {
         Notifier notifier = new Notifier();
         AtomicInteger count = new AtomicInteger();
 
-        notifier.addListener(()->{
+        notifier.addListener((number)->{
             count.getAndIncrement();
         });
-        notifier.sendNotifications();
+
+        notifier.sendNotifications(1);
 
         assertEquals(1, count.get());
     }

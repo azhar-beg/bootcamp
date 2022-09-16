@@ -13,9 +13,9 @@ public class Notifier {
         return this.listeners.add(notifiable);
     }
 
-    void sendNotifications(){
+    void sendNotifications(int capacity){
         this.listeners.forEach(listener->{
-            listener.receiveNotification();
+            listener.receiveNotification(capacity);
         });
     }
 }

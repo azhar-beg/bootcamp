@@ -1,7 +1,5 @@
 package com.tw.step.assignment3;
 
-import com.tw.step.assignment3.exception.NegativeLengthException;
-
 public class Volume {
     private final double value;
     private final VolumeUnit unit;
@@ -15,10 +13,18 @@ public class Volume {
         return new Volume(value, unit);
     }
 
-    public int compare(Volume anotherVolume) {
+    public ComparisonResult compare(Volume anotherVolume) {
         double cmDiff = this.getLitreValue() - anotherVolume.getLitreValue();
 
-        return Double.compare(cmDiff, 0);
+        if (cmDiff > 0){
+            return ComparisonResult.GREATER;
+        };
+
+        if (cmDiff < 0){
+            return ComparisonResult.LESS;
+        };
+
+        return ComparisonResult.EQUAL;
     }
 
     public Volume add(Volume anotherVolume)  {

@@ -1,6 +1,5 @@
 package com.tw.step.assignment3;
 
-import com.tw.step.assignment3.exception.NegativeLengthException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class VolumeTest {
 
     @Test
-    void shouldReturn1WhenGallonIsGreaterThanLitre() {
+    void shouldCompareGreaterGallonWithLesserLitre() {
         Volume gallon = Volume.create(1, VolumeUnit.GALLON);
         Volume litre = Volume.create(1, VolumeUnit.LITRE);
 
-        assertEquals(1, gallon.compare(litre));
+        assertEquals(ComparisonResult.GREATER, gallon.compare(litre));
     }
 
     @Test

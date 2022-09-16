@@ -18,10 +18,19 @@ public class Length {
         return new Length(value, unit);
     }
 
-    public int compare(Length anotherLength) {
+    public ComparisonResult compare(Length anotherLength) {
         double cmDiff = this.getCmValue() - anotherLength.getCmValue();
+//        return ComparisonResult.values()[Double.compare(cmDiff, 0) + 1];
 
-        return Double.compare(cmDiff, 0);
+        if (cmDiff > 0){
+            return ComparisonResult.GREATER;
+        };
+
+        if (cmDiff < 0){
+            return ComparisonResult.LESS;
+        };
+
+        return ComparisonResult.EQUAL;
     }
 
     public Length add(Length anotherLength) throws NegativeLengthException {

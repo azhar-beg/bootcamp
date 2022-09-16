@@ -8,43 +8,43 @@ import static org.junit.jupiter.api.Assertions.*;
 class LengthTest {
 
     @Test
-    void shouldReturn1WhenFeetIsGreaterThanInches() throws NegativeLengthException {
+    void shouldCompareGreaterFeetWithLesserInches() throws NegativeLengthException {
         Length feet = Length.create(1, LengthUnit.FEET);
         Length inches = Length.create(1, LengthUnit.INCH);
 
-        assertEquals(1, feet.compare(inches));
+        assertEquals(ComparisonResult.GREATER, feet.compare(inches));
     }
 
     @Test
-    void shouldReturn0WhenBothLengthsAreEqual() throws NegativeLengthException {
+    void shouldCompareEqualFeetWithEqualInches() throws NegativeLengthException {
         Length feet = Length.create(1, LengthUnit.FEET);
         Length inches = Length.create(12, LengthUnit.INCH);
 
-        assertEquals(0, feet.compare(inches));
+        assertEquals(ComparisonResult.EQUAL, feet.compare(inches));
     }
 
     @Test
-    void shouldReturnNegativeWhenFeetIsLessThanInches() throws NegativeLengthException {
+    void shouldCompareLesserFeetWithGreaterInches() throws NegativeLengthException {
         Length feet = Length.create(1, LengthUnit.FEET);
         Length inches = Length.create(13, LengthUnit.INCH);
 
-        assertEquals(-1, feet.compare(inches));
+        assertEquals(ComparisonResult.LESS, feet.compare(inches));
     }
 
     @Test
-    void shouldReturn1WhenInchesIsGreaterThanCentimeters() throws NegativeLengthException {
+    void shouldCompareGreaterInchWithLesserCM() throws NegativeLengthException {
         Length inch = Length.create(1, LengthUnit.INCH);
         Length cm = Length.create(1, LengthUnit.CM);
 
-        assertEquals(1, inch.compare(cm));
+        assertEquals(ComparisonResult.GREATER, inch.compare(cm));
     }
 
     @Test
-    void shouldReturn1WhenCMIsGreaterThanMM() throws NegativeLengthException {
+    void shouldCompareGreaterCMWithLesserMM() throws NegativeLengthException {
         Length cm = Length.create(1, LengthUnit.CM);
         Length mm = Length.create(5, LengthUnit.MM);
 
-        assertEquals(1, cm.compare(mm));
+        assertEquals(ComparisonResult.GREATER, cm.compare(mm));
     }
 
     @Test

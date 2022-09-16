@@ -3,6 +3,8 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+TODO.md
+
 lib/
 ### Eclipse ###
 .apt_generated

@@ -1,5 +1,5 @@
 package com.tw.step.assignment4;
 
 public interface Notifiable {
-    void receiveNotification(ParkingLotCapacity capacity);
+    void receiveNotification(int parkingLotId, ParkingLotCapacity capacity);
 }

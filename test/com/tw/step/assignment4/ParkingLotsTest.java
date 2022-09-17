@@ -9,7 +9,7 @@ class ParkingLotsTest {
 
     @Test
     void shouldGiveIdOfNewlyAddedParkingLot() throws InvalidParkingSlotsException {
-        ParkingLot parkingLot = ParkingLot.create(2);
+        ParkingLot parkingLot = ParkingLot.create(1, 2);
         ParkingLots parkingLots = new ParkingLots();
 
         Integer lotId = parkingLots.add(parkingLot);

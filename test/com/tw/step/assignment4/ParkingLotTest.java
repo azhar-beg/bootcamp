@@ -67,7 +67,7 @@ class ParkingLotTest {
             actual.set(capacity);
         });
         parkingLot.park(new Car("456"));
-        ParkingLotCapacity expected = ParkingLotCapacity.OVER_80;
+        ParkingLotCapacity expected = ParkingLotCapacity.ABOVE_80;
 
         assertEquals(actual.get(),expected);
     }

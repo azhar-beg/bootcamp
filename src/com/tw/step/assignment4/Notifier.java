@@ -13,7 +13,7 @@ public class Notifier {
         return this.listeners.add(notifiable);
     }
 
-    void sendNotifications(int parkingLotId, ParkingLotCapacity capacity){
+    void emit(int parkingLotId, ParkingLotCapacity capacity){
         this.listeners.forEach(listener->{
             listener.receiveNotification(parkingLotId, capacity);
         });

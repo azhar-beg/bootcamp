@@ -5,11 +5,13 @@ import com.tw.step.assignment4.exception.InvalidParkingSlotsException;
 import java.util.ArrayList;
 
 public class ParkingLot {
+    public static final double MAX_PERCENTAGE = 100.0;
+    private final static  int MIN_SLOTS = 0;
+
     private final ArrayList<Car> cars;
     private final int id;
     private final int maxNoOfSlots;
     private final Notifier notifier;
-    private final static  int MIN_SLOTS = 0;
 
     private ParkingLot(int id, int maxNoOfSlots) {
         this.id = id;
@@ -32,7 +34,7 @@ public class ParkingLot {
 
     boolean park(Car car){
         if (this.isFull()){
-            this.notifier.sendNotifications(this.id, ParkingLotCapacity.FULL);
+            this.notifier.emit(this.id, ParkingLotCapacity.FULL);
             return false;
         }
 
@@ -43,15 +45,15 @@ public class ParkingLot {
     }
 
     private void sendNotifications() {
-        double capacity = Math.round((this.cars.size() * 100.0) / this.maxNoOfSlots);
+        double capacity = Math.round((this.cars.size() * MAX_PERCENTAGE) / this.maxNoOfSlots);
 
         if (capacity >= 80){
-            this.notifier.sendNotifications(this.id, ParkingLotCapacity.OVER_80);
+            this.notifier.emit(this.id, ParkingLotCapacity.ABOVE_80);
             return;
         }
 
         if (capacity <= 20){
-            this.notifier.sendNotifications(this.id, ParkingLotCapacity.BELOW_20);
+            this.notifier.emit(this.id, ParkingLotCapacity.BELOW_20);
         }
     }
 

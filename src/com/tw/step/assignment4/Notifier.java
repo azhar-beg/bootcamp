@@ -13,9 +13,11 @@ public class Notifier {
         return this.listeners.add(notifiable);
     }
 
-    void emit(int parkingLotId, ParkingLotCapacity capacity){
+    void emit(int parkingLotId, ParkingLotCapacity event){
         this.listeners.forEach(listener->{
-            listener.receiveNotification(parkingLotId, capacity);
+            if (listener.getSubscribedEvent().equals(event)){
+                listener.receiveNotification(parkingLotId, event);
+            }
         });
     }
 }

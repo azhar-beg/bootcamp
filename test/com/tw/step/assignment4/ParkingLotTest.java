@@ -63,8 +63,16 @@ class ParkingLotTest {
         parkingLot.park(new Car("789"));
         AtomicReference<ParkingLotCapacity> actual = new AtomicReference<>();
 
-        parkingLot.addListener((parkingLotId, capacity)->{
-            actual.set(capacity);
+        parkingLot.addListener(new Notifiable() {
+            @Override
+            public void receiveNotification(int parkingLotId, ParkingLotCapacity capacity) {
+               actual.set(capacity);
+            }
+
+            @Override
+            public ParkingLotCapacity getSubscribedEvent() {
+                return ParkingLotCapacity.ABOVE_80;
+            }
         });
         parkingLot.park(new Car("456"));
         ParkingLotCapacity expected = ParkingLotCapacity.ABOVE_80;
@@ -77,8 +85,16 @@ class ParkingLotTest {
         ParkingLot parkingLot = ParkingLot.create(1, 5);
         AtomicReference<ParkingLotCapacity> actual = new AtomicReference<>();
 
-        parkingLot.addListener((parkingLotId, capacity)->{
-            actual.set(capacity);
+        parkingLot.addListener(new Notifiable() {
+            @Override
+            public void receiveNotification(int parkingLotId, ParkingLotCapacity capacity) {
+                actual.set(capacity);
+            }
+
+            @Override
+            public ParkingLotCapacity getSubscribedEvent() {
+                return ParkingLotCapacity.BELOW_20;
+            }
         });
         parkingLot.park(new Car("456"));
         ParkingLotCapacity expected = ParkingLotCapacity.BELOW_20;
@@ -92,8 +108,16 @@ class ParkingLotTest {
         parkingLot.park(new Car("456"));
         AtomicReference<ParkingLotCapacity> actual = new AtomicReference<>();
 
-        parkingLot.addListener((parkingLotId, capacity)->{
-            actual.set(capacity);
+        parkingLot.addListener(new Notifiable() {
+            @Override
+            public void receiveNotification(int parkingLotId, ParkingLotCapacity capacity) {
+                actual.set(capacity);
+            }
+
+            @Override
+            public ParkingLotCapacity getSubscribedEvent() {
+                return ParkingLotCapacity.FULL;
+            }
         });
         parkingLot.park(new Car("456"));
         ParkingLotCapacity expected = ParkingLotCapacity.FULL;

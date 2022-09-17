@@ -12,7 +12,16 @@ class NotifierTest {
     void shouldAddListenerToBeNotified() {
         Notifier notifier = new Notifier();
 
-        boolean actual = notifier.addListener((parkingLotId, capacity) -> {});
+        boolean actual = notifier.addListener(new Notifiable() {
+            @Override
+            public void receiveNotification(int parkingLotId, ParkingLotCapacity capacity) {
+            }
+
+            @Override
+            public ParkingLotCapacity getSubscribedEvent() {
+                return ParkingLotCapacity.ABOVE_80;
+            }
+        });
 
         assertTrue(actual);
     }
@@ -22,8 +31,16 @@ class NotifierTest {
         Notifier notifier = new Notifier();
         AtomicInteger count = new AtomicInteger();
 
-        notifier.addListener((parkingLotId, number)->{
-            count.getAndIncrement();
+        notifier.addListener(new Notifiable() {
+            @Override
+            public void receiveNotification(int parkingLotId, ParkingLotCapacity capacity) {
+                count.getAndIncrement();
+            }
+
+            @Override
+            public ParkingLotCapacity getSubscribedEvent() {
+                return ParkingLotCapacity.ABOVE_80;
+            }
         });
 
         notifier.emit(1, ParkingLotCapacity.ABOVE_80);

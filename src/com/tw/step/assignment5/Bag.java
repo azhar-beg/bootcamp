@@ -1,5 +1,6 @@
 package com.tw.step.assignment5;
 
+import com.tw.step.assignment5.exception.BallNotAllowedException;
 import com.tw.step.assignment5.exception.InvalidCapacityException;
 import com.tw.step.assignment5.exception.MaximumBagCapacityExceeded;
 import com.tw.step.assignment5.exception.MaximumBallsExceededInBagException;
@@ -15,13 +16,13 @@ public class Bag {
         this.balls = new HashSet<>();
     }
 
-    boolean addBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException {
+    boolean addBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
         validateBall(ball);
 
         return this.balls.add(ball);
     }
 
-    private void validateBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException {
+    private void validateBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
         if (this.balls.size() >= this.maxCapacity){
             throw new MaximumBagCapacityExceeded(this.balls.size());
         }
@@ -36,6 +37,30 @@ public class Bag {
 
         if (ball.getColor() == BallColor.YELLOW){
             validateYellowBalls();
+        }
+
+        if (ball.getColor() == BallColor.BLUE){
+            validateBlueBalls();
+        }
+
+        if (ball.getColor() == BallColor.BLACK){
+            validateBlackBalls();
+        }
+    }
+
+    private void validateBlackBalls() throws BallNotAllowedException {
+        long blueBallsCount = getBallsCount(BallColor.BLUE);
+
+        if (blueBallsCount > 0){
+            throw new BallNotAllowedException(BallColor.BLACK);
+        }
+    }
+
+    private void validateBlueBalls() throws BallNotAllowedException {
+        long blackBallsCount = getBallsCount(BallColor.BLACK);
+
+        if (blackBallsCount > 0){
+            throw new BallNotAllowedException(BallColor.BLUE);
         }
     }
 

@@ -27,77 +27,7 @@ public class Bag {
             throw new MaximumBagCapacityExceeded(this.balls.size());
         }
 
-        if (ball.getColor() == BallColor.GREEN){
-            validateGreenBalls();
-        }
-
-        if (ball.getColor() == BallColor.RED){
-            validateRedBalls();
-        }
-
-        if (ball.getColor() == BallColor.YELLOW){
-            validateYellowBalls();
-        }
-
-        if (ball.getColor() == BallColor.BLUE){
-            validateBlueBalls();
-        }
-
-        if (ball.getColor() == BallColor.BLACK){
-            validateBlackBalls();
-        }
-    }
-
-    private void validateBlackBalls() throws BallNotAllowedException {
-        long blueBallsCount = getBallsCount(BallColor.BLUE);
-
-        if (blueBallsCount > 0){
-            throw new BallNotAllowedException(BallColor.BLACK);
-        }
-    }
-
-    private void validateBlueBalls() throws BallNotAllowedException {
-        long blackBallsCount = getBallsCount(BallColor.BLACK);
-
-        if (blackBallsCount > 0){
-            throw new BallNotAllowedException(BallColor.BLUE);
-        }
-    }
-
-    private void validateYellowBalls() throws MaximumBallsExceededInBagException {
-        long yellowBallsCount = getBallsCount(BallColor.YELLOW);
-        double yellowBallsPercentage = getYellowBallsPercentage(yellowBallsCount);
-
-        if (yellowBallsPercentage > 40){
-            throw new MaximumBallsExceededInBagException(BallColor.YELLOW);
-        }
-    }
-
-    private double getYellowBallsPercentage(long yellowBallsCount) {
-        return (double) ((yellowBallsCount + 1) * 100) / (this.balls.size() + 1);
-    }
-
-    private void validateRedBalls() throws MaximumBallsExceededInBagException {
-        long greenBallsCount = getBallsCount(BallColor.GREEN);
-        long redBallsCount = getBallsCount(BallColor.RED);
-
-        if((greenBallsCount * 2) <= redBallsCount){
-            throw new MaximumBallsExceededInBagException(BallColor.RED);
-        }
-    }
-
-    private void validateGreenBalls() throws MaximumBallsExceededInBagException {
-        long greenBallsCount = getBallsCount(BallColor.GREEN);
-
-        if(greenBallsCount >= 3){
-            throw new MaximumBallsExceededInBagException(BallColor.GREEN);
-        }
-    }
-
-    private long getBallsCount(BallColor color) {
-        return this.balls.stream()
-                .filter(ball1 -> ball1.getColor() == color)
-                .count();
+        ball.getColor().validate(this.balls);
     }
 
     public static Bag create(int maxCapacity) throws InvalidCapacityException {

@@ -33,6 +33,23 @@ public class Bag {
         if (ball.getColor() == BallColor.RED){
             validateRedBalls();
         }
+
+        if (ball.getColor() == BallColor.YELLOW){
+            validateYellowBalls();
+        }
+    }
+
+    private void validateYellowBalls() throws MaximumBallsExceededInBagException {
+        long yellowBallsCount = getBallsCount(BallColor.YELLOW);
+        double yellowBallsPercentage = getYellowBallsPercentage(yellowBallsCount);
+
+        if (yellowBallsPercentage > 40){
+            throw new MaximumBallsExceededInBagException(BallColor.YELLOW);
+        }
+    }
+
+    private double getYellowBallsPercentage(long yellowBallsCount) {
+        return (double) ((yellowBallsCount + 1) * 100) / (this.balls.size() + 1);
     }
 
     private void validateRedBalls() throws MaximumBallsExceededInBagException {

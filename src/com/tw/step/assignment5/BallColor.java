@@ -1,5 +1,5 @@
 package com.tw.step.assignment5;
 
 public enum BallColor {
-    GREEN, RED;
+    GREEN, RED, YELLOW;
 }

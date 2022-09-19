@@ -2,7 +2,7 @@ package com.tw.step.assignment5;
 
 import com.tw.step.assignment5.exception.BallNotAllowedException;
 import com.tw.step.assignment5.exception.InvalidCapacityException;
-import com.tw.step.assignment5.exception.MaximumBagCapacityExceeded;
+import com.tw.step.assignment5.exception.MaximumBagCapacityExceededException;
 import com.tw.step.assignment5.exception.MaximumBallsExceededInBagException;
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Bag {
         this.balls = new HashSet<>();
     }
 
-    boolean addBall(Ball ball) throws MaximumBagCapacityExceeded,
+    boolean addBall(Ball ball) throws MaximumBagCapacityExceededException,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
 
@@ -24,12 +24,12 @@ public class Bag {
         return this.balls.add(ball);
     }
 
-    private void validateBall(Ball ball) throws MaximumBagCapacityExceeded,
+    private void validateBall(Ball ball) throws MaximumBagCapacityExceededException,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
 
         if (this.balls.size() >= this.maxCapacity){
-            throw new MaximumBagCapacityExceeded(this.balls.size());
+            throw new MaximumBagCapacityExceededException(this.balls.size());
         }
 
         // Don't ask friends of friends.

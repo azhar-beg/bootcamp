@@ -1,6 +1,7 @@
 package com.tw.step.assignment5;
 
 import com.tw.step.assignment5.exception.InvalidCapacityException;
+import com.tw.step.assignment5.exception.MaximumBagCapacityExceeded;
 import com.tw.step.assignment5.exception.MaximumGreenBallsExceededException;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class BagTest {
     }
 
     @Test
-    void shouldPlaceABallInBag() throws InvalidCapacityException, MaximumGreenBallsExceededException {
+    void shouldPlaceABallInBag() throws InvalidCapacityException, MaximumGreenBallsExceededException, MaximumBagCapacityExceeded {
         Bag bag = Bag.create(12);
         Ball greenBall = new Ball(BallColor.GREEN);
 
@@ -22,7 +23,7 @@ class BagTest {
     }
 
     @Test
-    void shouldPlaceThreeGreenBalls() throws InvalidCapacityException, MaximumGreenBallsExceededException {
+    void shouldPlaceThreeGreenBalls() throws InvalidCapacityException, MaximumGreenBallsExceededException, MaximumBagCapacityExceeded {
         Bag bag = Bag.create(12);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -35,7 +36,7 @@ class BagTest {
     }
 
      @Test
-    void shouldThrowExceptionWhileAddingFourthGreenBall() throws InvalidCapacityException, MaximumGreenBallsExceededException {
+    void shouldThrowExceptionWhileAddingFourthGreenBall() throws InvalidCapacityException, MaximumGreenBallsExceededException, MaximumBagCapacityExceeded {
         Bag bag = Bag.create(12);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -47,6 +48,19 @@ class BagTest {
         bag.addBall(greenBall3);
 
         assertThrows(MaximumGreenBallsExceededException.class, ()-> bag.addBall(greenBall4));
+    }
+
+    @Test
+    void shouldThrowMaximumBagCapacityException() throws InvalidCapacityException, MaximumGreenBallsExceededException, MaximumBagCapacityExceeded {
+        Bag bag = Bag.create(2);
+        Ball greenBall1 = new Ball(BallColor.GREEN);
+        Ball greenBall2 = new Ball(BallColor.GREEN);
+        Ball greenBall3 = new Ball(BallColor.GREEN);
+
+        bag.addBall(greenBall1);
+        bag.addBall(greenBall2);
+
+        assertThrows(MaximumBagCapacityExceeded.class, ()-> bag.addBall(greenBall3));
     }
 
 

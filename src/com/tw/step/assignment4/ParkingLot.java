@@ -49,7 +49,6 @@ public class ParkingLot {
 
         if (capacity >= 80){
             this.notifier.emit(this.id, ParkingLotCapacity.ABOVE_80);
-            return;
         }
 
         if (capacity <= 20){

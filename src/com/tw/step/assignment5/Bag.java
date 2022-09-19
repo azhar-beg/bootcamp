@@ -19,25 +19,29 @@ public class Bag {
     boolean addBall(Ball ball) throws MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
-        validateBall(ball);
 
+        validateBall(ball);
         return this.balls.add(ball);
     }
 
     private void validateBall(Ball ball) throws MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         if (this.balls.size() >= this.maxCapacity){
             throw new MaximumBagCapacityExceeded(this.balls.size());
         }
 
+        // Don't ask friends of friends.
         ball.getColor().validate(this.balls);
     }
 
     public static Bag create(int maxCapacity) throws InvalidCapacityException {
+
         if (maxCapacity > 12 || maxCapacity < 1){
             throw new InvalidCapacityException(maxCapacity);
         }
+
         return new Bag(maxCapacity);
     }
 }

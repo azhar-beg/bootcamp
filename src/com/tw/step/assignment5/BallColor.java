@@ -32,10 +32,10 @@ public enum BallColor {
     YELLOW {
         @Override
         public void validate(HashSet<Ball> balls) throws MaximumBallsExceededInBagException {
-            long yellowBallsCount = getBallsCount(balls,BallColor.YELLOW);
-            double yellowBallsPercentage = getYellowBallsPercentage(balls,yellowBallsCount);
+            long yellowBallsCount = getBallsCount(balls, BallColor.YELLOW);
+            double yellowBallsPercentage = getYellowBallsPercentage(balls, yellowBallsCount);
 
-            if (yellowBallsPercentage > 40){
+            if (yellowBallsPercentage > 40) {
                 throw new MaximumBallsExceededInBagException(BallColor.YELLOW);
             }
         }
@@ -47,10 +47,10 @@ public enum BallColor {
 
     BLUE {
         @Override
-        public void validate(HashSet<Ball> balls) throws  BallNotAllowedException {
-            long blackBallsCount = getBallsCount(balls,BallColor.BLACK);
+        public void validate(HashSet<Ball> balls) throws BallNotAllowedException {
+            long blackBallsCount = getBallsCount(balls, BallColor.BLACK);
 
-            if (blackBallsCount > 0){
+            if (blackBallsCount > 0) {
                 throw new BallNotAllowedException(BallColor.BLUE);
             }
         }
@@ -59,9 +59,9 @@ public enum BallColor {
     BLACK {
         @Override
         public void validate(HashSet<Ball> balls) throws BallNotAllowedException {
-            long blueBallsCount = getBallsCount(balls,BallColor.BLUE);
+            long blueBallsCount = getBallsCount(balls, BallColor.BLUE);
 
-            if (blueBallsCount > 0){
+            if (blueBallsCount > 0) {
                 throw new BallNotAllowedException(BallColor.BLACK);
             }
         }

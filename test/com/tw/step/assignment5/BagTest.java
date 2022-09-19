@@ -1,11 +1,7 @@
 package com.tw.step.assignment5;
 
-import com.tw.step.assignment5.exception.BallNotAllowedException;
-import com.tw.step.assignment5.exception.InvalidCapacityException;
-import com.tw.step.assignment5.exception.MaximumBagCapacityExceeded;
-import com.tw.step.assignment5.exception.MaximumBallsExceededInBagException;
+import com.tw.step.assignment5.exception.*;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BagTest {
@@ -20,6 +16,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(12);
         Ball greenBall = new Ball(BallColor.GREEN);
 
@@ -31,6 +28,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(12);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -46,6 +44,7 @@ class BagTest {
     void shouldPlaceRedBallInBag() throws InvalidCapacityException,
             MaximumBagCapacityExceeded, MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(12);
         Ball greenBall = new Ball(BallColor.GREEN);
         Ball redBall = new Ball(BallColor.RED);
@@ -60,6 +59,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(12);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -78,6 +78,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(2);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -111,6 +112,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(4);
         Ball yellowBall = new Ball(BallColor.YELLOW);
         Ball greenBall1 = new Ball(BallColor.GREEN);
@@ -127,6 +129,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(4);
         Ball blackBall = new Ball(BallColor.BLACK);
 
@@ -138,6 +141,7 @@ class BagTest {
             MaximumBagCapacityExceeded,
             MaximumBallsExceededInBagException,
             BallNotAllowedException {
+
         Bag bag = Bag.create(4);
         Ball blackBall = new Ball(BallColor.BLACK);
         Ball blueBall = new Ball(BallColor.BLUE);
@@ -152,6 +156,7 @@ class BagTest {
              MaximumBagCapacityExceeded,
              MaximumBallsExceededInBagException,
              BallNotAllowedException {
+
         Bag bag = Bag.create(4);
         Ball blackBall = new Ball(BallColor.BLACK);
         Ball blueBall = new Ball(BallColor.BLUE);

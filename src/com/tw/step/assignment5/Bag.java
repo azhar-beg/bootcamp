@@ -3,7 +3,6 @@ package com.tw.step.assignment5;
 import com.tw.step.assignment5.exception.InvalidCapacityException;
 import com.tw.step.assignment5.exception.MaximumBagCapacityExceeded;
 import com.tw.step.assignment5.exception.MaximumBallsExceededInBagException;
-import com.tw.step.assignment5.exception.MaximumGreenBallsExceededException;
 
 import java.util.HashSet;
 
@@ -16,13 +15,13 @@ public class Bag {
         this.balls = new HashSet<>();
     }
 
-    boolean addBall(Ball ball) throws MaximumGreenBallsExceededException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException {
+    boolean addBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException {
         validateBall(ball);
 
         return this.balls.add(ball);
     }
 
-    private void validateBall(Ball ball) throws MaximumGreenBallsExceededException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException {
+    private void validateBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException {
         if (this.balls.size() >= this.maxCapacity){
             throw new MaximumBagCapacityExceeded(this.balls.size());
         }
@@ -45,11 +44,11 @@ public class Bag {
         }
     }
 
-    private void validateGreenBalls() throws MaximumGreenBallsExceededException {
+    private void validateGreenBalls() throws MaximumBallsExceededInBagException {
         long greenBallsCount = getBallsCount(BallColor.GREEN);
 
         if(greenBallsCount >= 3){
-            throw new MaximumGreenBallsExceededException();
+            throw new MaximumBallsExceededInBagException(BallColor.GREEN);
         }
     }
 

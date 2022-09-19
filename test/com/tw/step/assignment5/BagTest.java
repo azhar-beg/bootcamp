@@ -3,7 +3,6 @@ package com.tw.step.assignment5;
 import com.tw.step.assignment5.exception.InvalidCapacityException;
 import com.tw.step.assignment5.exception.MaximumBagCapacityExceeded;
 import com.tw.step.assignment5.exception.MaximumBallsExceededInBagException;
-import com.tw.step.assignment5.exception.MaximumGreenBallsExceededException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,7 +47,7 @@ class BagTest {
         bag.addBall(greenBall2);
         bag.addBall(greenBall3);
 
-        assertThrows(MaximumGreenBallsExceededException.class, ()-> bag.addBall(greenBall4));
+        assertThrows(MaximumBallsExceededInBagException.class, ()-> bag.addBall(greenBall4));
     }
 
     @Test

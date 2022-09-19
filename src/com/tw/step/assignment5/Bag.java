@@ -16,13 +16,17 @@ public class Bag {
         this.balls = new HashSet<>();
     }
 
-    boolean addBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    boolean addBall(Ball ball) throws MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         validateBall(ball);
 
         return this.balls.add(ball);
     }
 
-    private void validateBall(Ball ball) throws MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    private void validateBall(Ball ball) throws MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         if (this.balls.size() >= this.maxCapacity){
             throw new MaximumBagCapacityExceeded(this.balls.size());
         }

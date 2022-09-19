@@ -16,7 +16,10 @@ class BagTest {
     }
 
     @Test
-    void shouldPlaceGreenBallInBag() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldPlaceGreenBallInBag() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(12);
         Ball greenBall = new Ball(BallColor.GREEN);
 
@@ -24,7 +27,10 @@ class BagTest {
     }
 
     @Test
-    void shouldPlaceThreeGreenBalls() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldPlaceThreeGreenBalls() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(12);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -37,7 +43,9 @@ class BagTest {
     }
 
     @Test
-    void shouldPlaceRedBallInBag() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldPlaceRedBallInBag() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded, MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(12);
         Ball greenBall = new Ball(BallColor.GREEN);
         Ball redBall = new Ball(BallColor.RED);
@@ -48,7 +56,10 @@ class BagTest {
     }
 
     @Test
-    void shouldThrowExceptionWhileAddingFourthGreenBall() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldThrowExceptionWhileAddingFourthGreenBall() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(12);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -63,7 +74,10 @@ class BagTest {
     }
 
     @Test
-    void shouldThrowMaximumBagCapacityException() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldThrowMaximumBagCapacityException() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(2);
         Ball greenBall1 = new Ball(BallColor.GREEN);
         Ball greenBall2 = new Ball(BallColor.GREEN);
@@ -93,7 +107,10 @@ class BagTest {
 
 
     @Test
-    void shouldAddYellowBall() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldAddYellowBall() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(4);
         Ball yellowBall = new Ball(BallColor.YELLOW);
         Ball greenBall1 = new Ball(BallColor.GREEN);
@@ -106,7 +123,10 @@ class BagTest {
     }
 
     @Test
-    void shouldAddBlackBall() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldAddBlackBall() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(4);
         Ball blackBall = new Ball(BallColor.BLACK);
 
@@ -114,7 +134,10 @@ class BagTest {
     }
 
     @Test
-    void shouldThrowExceptionWhileAddingBlackBallWhenBlueBallIsPresent() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldThrowExceptionWhileAddingBlackBallWhenBlueBallIsPresent() throws InvalidCapacityException,
+            MaximumBagCapacityExceeded,
+            MaximumBallsExceededInBagException,
+            BallNotAllowedException {
         Bag bag = Bag.create(4);
         Ball blackBall = new Ball(BallColor.BLACK);
         Ball blueBall = new Ball(BallColor.BLUE);
@@ -125,7 +148,10 @@ class BagTest {
     }
 
      @Test
-    void shouldThrowExceptionWhileAddingBlueBallWhenBlackBallIsPresent() throws InvalidCapacityException, MaximumBagCapacityExceeded, MaximumBallsExceededInBagException, BallNotAllowedException {
+    void shouldThrowExceptionWhileAddingBlueBallWhenBlackBallIsPresent() throws InvalidCapacityException,
+             MaximumBagCapacityExceeded,
+             MaximumBallsExceededInBagException,
+             BallNotAllowedException {
         Bag bag = Bag.create(4);
         Ball blackBall = new Ball(BallColor.BLACK);
         Ball blueBall = new Ball(BallColor.BLUE);
